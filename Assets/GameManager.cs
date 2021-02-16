@@ -61,11 +61,11 @@ public class GameManager:MonoBehaviour
     {
         if (RockSciserPaper(attackPlayer, defancePlayer) == Result.Draw)
             return Result.Win;
-        else if(RockSciserPaper(attackPlayer, defancePlayer) == Result.Win)
+        else if (RockSciserPaper(attackPlayer, defancePlayer) == Result.Win)
         {
             return Result.Draw;
         }
-        else(RockSciserPaper(attackPlayer, defancePlayer) == Result.Lose)
+        else
         {
             attackPlayer.ChangeAttackRight(false);
             defancePlayer.ChangeAttackRight(true);
