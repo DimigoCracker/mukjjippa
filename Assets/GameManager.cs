@@ -56,4 +56,20 @@ public class GameManager:MonoBehaviour
             }
         }
     }
+
+    public Result MukJjiPpa(Player attackPlayer, Player defancePlayer)
+    {
+        if (RockSciserPaper(attackPlayer, defancePlayer) == Result.Draw)
+            return Result.Win;
+        else if(RockSciserPaper(attackPlayer, defancePlayer) == Result.Win)
+        {
+            return Result.Draw;
+        }
+        else(RockSciserPaper(attackPlayer, defancePlayer) == Result.Lose)
+        {
+            attackPlayer.ChangeAttackRight(false);
+            defancePlayer.ChangeAttackRight(true);
+            return Result.Draw;
+        }
+    }
 }
