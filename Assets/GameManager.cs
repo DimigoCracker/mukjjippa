@@ -17,7 +17,12 @@ public enum OutHand //가위바위보 열거체
 
 public class GameManager:MonoBehaviour
 {
-    List<Player> players;
+    private static GameManager instnance;
+    public GameManager Instace
+    {
+        get { return instnance; }
+    }
+    private List<Player> players;
     public Result RockSciserPaper(Player player, Player other)
     {
         if (player.SelectedOutHand == other.SelectedOutHand)
