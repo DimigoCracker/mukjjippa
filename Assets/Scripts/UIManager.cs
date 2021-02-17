@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     public Image player1, player2, player1Hand, player2Hand;
     public Sprite muk, jji, ppa, fmuk, fjji;
+    public float easter = 0.00625f;
     public void Display(GameManager.Result result)
     {
         if (result == GameManager.Result.Draw)
@@ -50,7 +51,7 @@ public class UIManager : MonoBehaviour
         switch (GameManager.player1.outHand)
         {
             case Player.OutHand.Rock:
-                if(Fword() < 0.000625)
+                if(Fword() < easter)
                 {
                     player1Hand.sprite = fmuk;
                 }
@@ -60,7 +61,7 @@ public class UIManager : MonoBehaviour
                 }
                 break;
             case Player.OutHand.Scissors:
-                if (Fword() < 0.000625)
+                if (Fword() < easter)
                 {
                     player1Hand.sprite = fjji;
                 }
@@ -76,7 +77,7 @@ public class UIManager : MonoBehaviour
         switch (GameManager.player2.outHand)
         {
             case Player.OutHand.Rock:
-                if (Fword() < 0.000625)
+                if (Fword() < easter)
                 {
                     player2Hand.sprite = fmuk;
                 }
@@ -86,7 +87,7 @@ public class UIManager : MonoBehaviour
                 }
                 break;
             case Player.OutHand.Scissors:
-                if (Fword() < 0.000625)
+                if (Fword() < easter)
                 {
                     player2Hand.sprite = fjji;
                 }

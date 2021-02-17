@@ -100,4 +100,12 @@ public class GameManager: MonoBehaviour
         }
         uiManager.Display(r);
     }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit(0);
+        }
+    }
 }
