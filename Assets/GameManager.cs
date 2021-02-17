@@ -93,6 +93,11 @@ public class GameManager: MonoBehaviour
     public void OnClick(int type)
     {
         player1.outHand = (Player.OutHand)type;
-        uiManager.Display(MukJjiPpa());
+        Result r = MukJjiPpa();
+        if(r != Result.Draw)
+        {
+            turn = null;
+        }
+        uiManager.Display(r);
     }
 }

@@ -42,6 +42,9 @@ public class UIManager : MonoBehaviour
                     player1.color = Color.red;
                     player2.color = Color.green;
                     break;
+                default:
+                    player1.color = player2.color = Color.white;
+                    break;
             }
         }
         switch (GameManager.player1.outHand)
