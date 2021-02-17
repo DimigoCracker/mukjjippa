@@ -72,4 +72,20 @@ public class GameManager:MonoBehaviour
             return Result.Draw;
         }
     }
+
+    public void DetermineAttackRight()
+    {
+        if (RockSciserPaper(players[0], players[1]) == Result.Lose)
+        {
+            players[0].ChangeAttackRight(true);
+        }
+        else if (RockSciserPaper(players[0], players[1]) == Result.Lose)
+        {
+            players[1].ChangeAttackRight(true);
+        }
+        else
+        {
+            DetermineAttackRight();
+        }
+    }
 }
