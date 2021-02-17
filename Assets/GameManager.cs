@@ -12,7 +12,7 @@ public class GameManager: MonoBehaviour
         Lose
     }
     public UIManager uiManager;
-    public static Player player1,  player2;
+    public static Player player1 = new Player(), player2 = new Player();
     public static bool? turn = null;
     private Result RockScissorsPaper()
     {
