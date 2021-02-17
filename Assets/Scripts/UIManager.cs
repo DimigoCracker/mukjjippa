@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public Image player1, player2, player1Hand, player2Hand;
-    public Sprite muk, jji, ppa;
+    public Sprite muk, jji, ppa, fmuk, fjji;
     public void Display(GameManager.Result result)
     {
         if (result == GameManager.Result.Draw)
@@ -50,10 +50,24 @@ public class UIManager : MonoBehaviour
         switch (GameManager.player1.outHand)
         {
             case Player.OutHand.Rock:
-                player1Hand.sprite = muk;
+                if(Fword() < 0.000625)
+                {
+                    player1Hand.sprite = fmuk;
+                }
+                else
+                {
+                    player1Hand.sprite = muk;
+                }
                 break;
             case Player.OutHand.Scissors:
-                player1Hand.sprite = jji;
+                if (Fword() < 0.000625)
+                {
+                    player1Hand.sprite = fjji;
+                }
+                else
+                {
+                    player1Hand.sprite = jji;
+                }
                 break;
             case Player.OutHand.Paper:
                 player1Hand.sprite = ppa;
@@ -62,14 +76,33 @@ public class UIManager : MonoBehaviour
         switch (GameManager.player2.outHand)
         {
             case Player.OutHand.Rock:
-                player2Hand.sprite = muk;
+                if (Fword() < 0.000625)
+                {
+                    player2Hand.sprite = fmuk;
+                }
+                else
+                {
+                    player2Hand.sprite = muk;
+                }
                 break;
             case Player.OutHand.Scissors:
-                player2Hand.sprite = jji;
+                if (Fword() < 0.000625)
+                {
+                    player2Hand.sprite = fjji;
+                }
+                else
+                {
+                    player2Hand.sprite = jji;
+                }
                 break;
             case Player.OutHand.Paper:
                 player2Hand.sprite = ppa;
                 break;
         }
+    }
+    public float Fword()
+    {
+        float f = Random.Range(0, 1f);
+        return f;
     }
 }
