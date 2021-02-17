@@ -2,22 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
-    private bool attackRight;    //공격권
-    private OutHand outHand;
-    public OutHand SelectedOutHand
+    public enum OutHand
     {
-        get { return outHand; }
+        Rock,
+        Scissors,
+        Paper
     }
-
-    public void ChangeAttackRight(bool attackRight)
-    {
-        this.attackRight = attackRight;
-    }
-
-    public void SelectOutHand(OutHand outHand)
-    {
-        this.outHand = outHand;
-    }
+    public OutHand outHand;
 }

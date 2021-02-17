@@ -2,34 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Result
-{
-    Draw,
-    Win,
-    Lose
-}
-public enum OutHand //가위바위보 열거체
-{
-    Rock,
-    Scissors,
-    Paper
-}
 
-public class GameManager:MonoBehaviour
+public class GameManager: MonoBehaviour
 {
-    private static GameManager instnance;
-    public GameManager Instace
+    public enum Result
     {
-        get { return instnance; }
+        Draw,
+        Win,
+        Lose
     }
-    private List<Player> players;
-    public Result RockSciserPaper(Player player, Player other)
+    public UIManager uiManager;
+    public static Player player1,  player2;
+    public static bool? turn = null;
+    private Result RockScissorsPaper()
     {
-        if (player.SelectedOutHand == other.SelectedOutHand)
+        player2.outHand = (Player.OutHand)Random.Range(0, 3);
+        if (player1.outHand == player2.outHand)
             return Result.Draw;
-        else if (player.SelectedOutHand == OutHand.Scissors)
+        else if (player1.outHand == Player.OutHand.Rock)
         {
-            if (other.SelectedOutHand == OutHand.Paper)
+            if (player2.outHand == Player.OutHand.Scissors)
             {
                 return Result.Win;
             }
@@ -38,9 +30,9 @@ public class GameManager:MonoBehaviour
                 return Result.Lose;
             }
         }
-        else if (player.SelectedOutHand == OutHand.Rock)
+        else if (player1.outHand == Player.OutHand.Scissors)
         {
-            if (other.SelectedOutHand == OutHand.Scissors)
+            if (player2.outHand == Player.OutHand.Paper)
             {
                 return Result.Win;
             }
@@ -51,7 +43,7 @@ public class GameManager:MonoBehaviour
         }
         else
         {
-            if (other.SelectedOutHand == OutHand.Rock)
+            if (player2.outHand == Player.OutHand.Rock)
             {
                 return Result.Win;
             }
@@ -62,35 +54,45 @@ public class GameManager:MonoBehaviour
         }
     }
 
-    public Result MukJjiPpa(Player attackPlayer, Player defancePlayer)
+    private Result MukJjiPpa()
     {
-        if (RockSciserPaper(attackPlayer, defancePlayer) == Result.Draw)
-            return Result.Win;
-        else if (RockSciserPaper(attackPlayer, defancePlayer) == Result.Win)
+        if (turn.HasValue)
         {
+            switch (RockScissorsPaper())
+            {
+                case Result.Draw:
+                    return turn.Value ? Result.Win : Result.Lose;
+                case Result.Win:
+                    if (!turn.Value)
+                        turn = true;
+                    return Result.Draw;
+                case Result.Lose:
+                    if (turn.Value)
+                        turn = false;
+                    return Result.Draw;
+            }
             return Result.Draw;
         }
         else
         {
-            attackPlayer.ChangeAttackRight(false);
-            defancePlayer.ChangeAttackRight(true);
+            switch (RockScissorsPaper())
+            {
+                case Result.Draw:
+                    break;
+                case Result.Win:
+                    turn = true;
+                    break;
+                case Result.Lose:
+                    turn = false;
+                    break;
+            }
             return Result.Draw;
         }
     }
 
-    public void DetermineAttackRight()
+    public void OnClick(int type)
     {
-        if (RockSciserPaper(players[0], players[1]) == Result.Lose)
-        {
-            players[0].ChangeAttackRight(true);
-        }
-        else if (RockSciserPaper(players[0], players[1]) == Result.Lose)
-        {
-            players[1].ChangeAttackRight(true);
-        }
-        else
-        {
-            DetermineAttackRight();
-        }
+        player1.outHand = (Player.OutHand)type;
+        uiManager.Display(MukJjiPpa());
     }
 }
