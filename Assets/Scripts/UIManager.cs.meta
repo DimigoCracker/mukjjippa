@@ -3,7 +3,14 @@ guid: 188eb28197e352d49b02f81779adaa81
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player1: {instanceID: 0}
+  - player2: {instanceID: 0}
+  - player1Hand: {instanceID: 0}
+  - player2Hand: {instanceID: 0}
+  - muk: {fileID: 21300000, guid: f6528da465430e5489dfcfc22d701e60, type: 3}
+  - jji: {fileID: 21300000, guid: a3f0776817b541441bdcd4b2e5a97f0d, type: 3}
+  - ppa: {fileID: 21300000, guid: 9d7d06adf14c2384fb619b6147195df8, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
