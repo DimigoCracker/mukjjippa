@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     public Image player1, player2, player1Hand, player2Hand;
     public Sprite muk, jji, ppa, fmuk, fjji;
-    public float easter = 0.00625f;
+    public float easter = 0;
     public void Display(GameManager.Result result)
     {
         if (result == GameManager.Result.Draw)
